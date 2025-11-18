@@ -1,37 +1,156 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; max-width: 100%; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans TC", Arial, sans-serif; line-height: 1.6; }
-    img { max-width: 100%; height: auto; display: block; }
-    .container { width: 1920px; margin: 0 auto; padding: 16px; }
-    nav a { margin-right: 12px; text-decoration: none; }
-    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
-    .col-12 { grid-column: span 12; }
-    @media (min-width: 768px) { .col-md-6 { grid-column: span 6; } }
-    .card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 16px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.04); }
-  </style>
+    <meta charset="UTF-8">
+    <title>簡潔又美觀的 Landing Page</title>
+
+    <!-- SEO -->
+    <meta name="description"
+          content="這是一個使用 Flexbox 排版的純 HTML + CSS Landing Page範例，適合練習彈性盒模型與響應式設計。">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* 基本重置 */
+        *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+
+        body{
+            font-family:system-ui,sans-serif;
+            line-height:1.6;
+            color:#333;
+            background:#f9fafb;
+        }
+        a{color:#0066cc;text-decoration:none;}
+        a:hover{ text-decoration:underline; }
+
+        /* ★ 讓所有圖片置中 ★ */
+        img{
+            max-width:100%;
+            height:auto;
+            display:block;
+            margin-left:auto;      /* ← 新增 */
+            margin-right:auto;     /* ← 新增 */
+        }
+
+        header,.hero,.features,footer{padding:1rem;}
+
+        /* ---------- Header ---------- */
+        header{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background:#fff;
+            border-bottom:1px solid #e5e5e5;
+        }
+        .logo{font-size:1.25rem;font-weight:bold;}
+        nav ul{
+            display:flex;
+            gap:1rem;
+            list-style:none;
+        }
+
+        /* ---------- Hero ---------- */
+        .hero{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            text-align:center;
+            background:#e0f7fa;
+            gap:1.5rem;
+        }
+        .hero h1{font-size:2rem;margin-top:0.5rem;}
+        .hero p{max-width:30rem;}
+
+        /* 大螢幕下 Hero 圖片尺寸 */
+        @media (min-width:768px){
+            .hero{flex-direction:row;text-align:left;}
+            .hero > div{flex:1;}
+            .hero img{max-width:400px; margin-left:auto; margin-right:auto;} /* ← 新增 */
+        }
+
+        /* ---------- Features ---------- */
+        .features{
+            display:flex;
+            flex-wrap:wrap;
+            gap:1rem;
+            justify-content:center;
+        }
+        .feature{
+            flex:1 1 280px;
+            background:#fff;
+            border:1px solid #ddd;
+            border-radius:8px;
+            padding:1rem;
+            text-align:center;
+        }
+        .feature img{
+            margin-bottom:0.75rem;
+            margin-left:auto;      /* ← 新增 */
+            margin-right:auto;     /* ← 新增 */
+        }
+
+        /* ---------- Footer ---------- */
+        footer{
+            background:#222;
+            color:#fff;
+            text-align:center;
+            font-size:0.875rem;
+        }
+
+        /* ---------- 其他斷點 ---------- */
+        @media (min-width:1440px){
+            .hero{padding:3rem;}
+            .features{max-width:1200px;margin:auto;}
+        }
+    </style>
 </head>
 <body>
-  <header class="container" role="banner">
-    <nav aria-label="主選單">
-      <a href="#about">關於我</a>
-      <a href="#projects">作品集</a>
-      <a href="https://example.com/blog">技術部落格</a>
-      <a href="mailto:me@example.com">聯絡我</a>
-    </nav>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <h1>你好，我是小明：前端工程師新手之路</h1>
-    <p>歡迎來到我的個人網站！這裡整理了學習紀錄、Side Project 與實作心得。</p>
-  </header>
 
-  <footer class="container" role="contentinfo">
-    <p>© 2025 My Portfolio · <a href="#">GitHub</a></p>
-    <img src="https://source.unsplash.com/600x200/?technology,abstract" alt="">
-  </footer>
+<header>
+    <div class="logo">MyBrand</div>
+    <nav aria-label="主選單">
+        <ul>
+          <li><a href="#features">功能介紹</a></li>
+            <li><a href="#pricing">方案價格</a></li>
+            <li><a href="#contact">聯絡我們</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero 區塊 -->
+    <section class="hero">
+        <div>
+            <h1>打造屬於你的專屬網站</h1>
+      <p>使用最簡潔的 HTML + CSS，結合 Flexbox 彈性布局，快速建立美觀且響應式的 Landing Page。</p>
+            <a href="#features">了解更多 →</a>
+        </div>
+        <img src="https://picsum.photos/seed/hero/800/500" alt="展示範例畫面">
+    </section>
+
+    <!-- 功能區塊 -->
+    <section id="features" class="features">
+        <article class="feature">
+            <img src="https://picsum.photos/seed/f1/200/150" alt="快速部署圖示">
+            <h2>快速部署</h2>
+            <p>只需 HTML 與 CSS，無需 JavaScript，即可上線。</p>
+        </article>
+        <article class="feature">
+            <img src="https://picsum.photos/seed/f2/200/150" alt="全平台相容圖示">
+            <h2>跨平台相容</h2>
+            <p>在桌面、平板與手機上皆保持一致排版。</p>
+        </article>
+        <article class="feature">
+            <img src="https://picsum.photos/seed/f3/200/150" alt="SEO 友好圖示">
+            <h2>SEO 友好</h2>
+            <p>完整 meta 標籤與語意化標記，提高搜尋引擎曝光。</p>
+        </article>
+    </section>
+</main>
+
+<footer id="contact">
+    © 2025 MyBrand. All rights reserved.
+</footer>
+
 </body>
 </html>
